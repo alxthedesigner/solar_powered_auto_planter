@@ -1,4 +1,6 @@
-# Solar-powered auto planter
+# solar_powered_auto_planter
+
+A solar-powered automated watering and monitoring project. A gravity-fed rainwater collector waters a standalone 2 ft × 6 ft planter. It's low-power and runs with no external water line, no mains electricity, and with or without Wi-Fi. Control it from a computer or a phone.
 
 An automated planter that needs as little human help as possible. It is built from three separate parts, and each one can be swapped out on its own.
 
@@ -27,3 +29,7 @@ solar_powered_auto_planter/
 |---|---|---|---|
 | Field identifier | `field-id/` | [field-identifier.md](commune_offline_community_suite/docs/integrations/field-identifier.md) | Commune side built; device client in [field_identifier/commune_link/](field_identifier/commune_link/) |
 | Automated planter | none: kept on the Commune computer | [planter.md](commune_offline_community_suite/docs/integrations/planter.md) | Built: firmware, Raspberry Pi bridge, SD card and phone page in [automated_planter_system/](automated_planter_system/); Planter page in Commune |
+
+## License
+
+[Apache License 2.0](LICENSE): free for anyone to use, change and share, including commercially, with a patent grant from every contributor.
