@@ -1,8 +1,8 @@
 # solar_powered_auto_planter
 
-A solar-powered automated watering and monitoring project. A gravity-fed rainwater collector waters a standalone 2 ft × 6 ft planter. It's low-power and runs with no external water line, no mains electricity, and with or without Wi-Fi. Control it from a computer or a phone.
+This is a solar powered automated watering planter; a low-powered setup that uses a gravity-driven rainwater collector and runs without an external water line, without a water pump, without any electricity from a socket, and without home wifi (though it is wifi-enabled). This is a piece of self-reliant infrastructure that you can control from your computer (on your home wifi) or on your phone (on the planter's wifi).
 
-An automated planter that needs as little human help as possible. It is built from three separate parts, and each one can be swapped out on its own.
+It is built from three separate parts, and each one can be swapped out on its own.
 
 ```
 solar_powered_auto_planter/
