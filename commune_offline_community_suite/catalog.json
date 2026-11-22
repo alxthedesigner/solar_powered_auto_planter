@@ -1,0 +1,141 @@
+{
+  "_comment": "Topic -> source map. 'kiwix' entries are real ZIMs resolved live from library.kiwix.org by name. 'guide' is the topic page id in the built-in Off-Grid Field Guide pseudosite (always available). 'crawl' entries are real websites you can turn into a ZIM with zimit (Docker).",
+  "libraries": {
+    "zimgit-water_en":                    {"title": "Water Treatment Library", "flavour": ""},
+    "zimgit-food-preparation_en":         {"title": "Food for Preppers", "flavour": ""},
+    "zimgit-knots_en":                    {"title": "A Library of Knots", "flavour": ""},
+    "zimgit-medicine_en":                 {"title": "Medical Library", "flavour": ""},
+    "zimgit-post-disaster_en":            {"title": "Post Disaster Resource Library", "flavour": ""},
+    "irp.fas.org_en_military-medicine":   {"title": "Military Medicine (FAS)", "flavour": ""},
+    "wikipedia_en_medicine":              {"title": "WikiMed Medical Encyclopedia", "flavour": "nopic"},
+    "mdwiki_en_all":                      {"title": "MDWiki Medical Encyclopedia", "flavour": "nopic"},
+    "nhs.uk_en_medicines":                {"title": "NHS Medicines A to Z", "flavour": ""},
+    "ready.gov_en_all":                   {"title": "Ready.gov", "flavour": ""},
+    "ready.gov_es_all":                   {"title": "Ready.gov (Español)", "flavour": ""},
+    "trueprepper.com_en_all":             {"title": "True Prepper", "flavour": ""},
+    "canadian-prepper_en_preppingfood":   {"title": "Canadian Prepper: Prepping Food (video)", "flavour": ""},
+    "canadian-prepper_en_winterprepping": {"title": "Canadian Prepper: Winter Prepping (video)", "flavour": ""},
+    "outdoors.stackexchange.com_en_all":  {"title": "The Great Outdoors Q&A", "flavour": ""},
+    "scoutwiki.org_en_all":               {"title": "ScoutWiki", "flavour": ""},
+    "gardening.stackexchange.com_en_all": {"title": "Gardening & Landscaping Q&A", "flavour": ""},
+    "gardenology_en_all":                 {"title": "Gardenology (plant encyclopedia)", "flavour": ""},
+    "sustainability.stackexchange.com_en_all": {"title": "Sustainable Living Q&A", "flavour": ""},
+    "appropedia_en_all":                  {"title": "Appropedia (appropriate technology)", "flavour": ""},
+    "energypedia_en_all":                 {"title": "energypedia (off-grid energy)", "flavour": ""},
+    "solar.lowtechmagazine.com_mul_all":  {"title": "Low-Tech Magazine", "flavour": ""},
+    "cooking.stackexchange.com_en_all":   {"title": "Cooking Q&A (Seasoned Advice)", "flavour": ""},
+    "based.cooking_en_all":               {"title": "based.cooking recipes", "flavour": ""},
+    "foss.cooking_en_all":                {"title": "FOSS cooking recipes", "flavour": ""},
+    "crafts.stackexchange.com_en_all":    {"title": "Arts & Crafts Q&A", "flavour": ""},
+    "fitness.stackexchange.com_en_all":   {"title": "Physical Fitness Q&A", "flavour": ""},
+    "martialarts.stackexchange.com_en_all": {"title": "Martial Arts Q&A", "flavour": ""},
+    "wikipedia_en_knots":                 {"title": "Knots by Wikipedia", "flavour": "maxi"},
+    "wikipedia_en_climate-change":        {"title": "Climate Change by Wikipedia", "flavour": "maxi"},
+    "wikivoyage_en_all":                  {"title": "Wikivoyage (climate, regions, phrasebooks)", "flavour": "nopic"},
+    "wikispecies_en_all":                 {"title": "Wikispecies", "flavour": "nopic"},
+    "wiktionary_en_all":                  {"title": "English Wiktionary (with translations)", "flavour": "nopic"},
+    "wiktionary_es_all":                  {"title": "Wikcionario (Spanish)", "flavour": "nopic"},
+    "wiktionary_fr_all":                  {"title": "Wiktionnaire (French)", "flavour": "nopic"},
+    "wiktionary_zh_all":                  {"title": "Chinese Wiktionary", "flavour": "nopic"},
+    "chinese.stackexchange.com_mul_all":  {"title": "Chinese Language Q&A", "flavour": ""},
+    "wikipedia_en_all":                   {"title": "Wikipedia (English)", "flavour": "nopic"},
+    "wikipedia_es_all":                   {"title": "Wikipedia (Español)", "flavour": "nopic"},
+    "wikipedia_es_medicine":              {"title": "Wikipedia Médica (Español)", "flavour": "nopic"},
+    "diy.stackexchange.com_en_all":       {"title": "Home Improvement Q&A", "flavour": ""},
+    "electronics.stackexchange.com_en_all": {"title": "Electronics Q&A", "flavour": ""},
+    "ham.stackexchange.com_en_all":       {"title": "Amateur Radio Q&A", "flavour": ""},
+    "mechanics.stackexchange.com_en_all": {"title": "Motor Vehicle Mechanics Q&A", "flavour": ""},
+    "ifixit_en_all":                      {"title": "iFixit repair guides", "flavour": ""},
+    "wikibooks_en_all":                   {"title": "Wikibooks (open textbooks)", "flavour": "nopic"}
+  },
+  "categories": [
+    {
+      "id": "wildlife", "title": "Wildlife Identification",
+      "topics": [
+        {"id": "plant-id", "title": "Plant identification index", "kiwix": ["gardenology_en_all", "wikispecies_en_all", "gardening.stackexchange.com_en_all"]},
+        {"id": "animal-id", "title": "Animal identification index", "kiwix": ["wikispecies_en_all", "outdoors.stackexchange.com_en_all"]},
+        {"id": "poison", "title": "Poison reference guide", "kiwix": ["wikipedia_en_medicine", "nhs.uk_en_medicines", "mdwiki_en_all"]},
+        {"id": "climate", "title": "Climate guide", "kiwix": ["wikivoyage_en_all", "wikipedia_en_climate-change"]},
+        {"id": "tracking", "title": "Animal tracking", "kiwix": ["outdoors.stackexchange.com_en_all", "scoutwiki.org_en_all"]},
+        {"id": "spice-plants", "title": "Plants for spices guide", "kiwix": ["gardenology_en_all", "cooking.stackexchange.com_en_all"]}
+      ]
+    },
+    {
+      "id": "language", "title": "Language",
+      "topics": [
+        {"id": "dict-es", "title": "English to Spanish dictionary", "kiwix": ["wiktionary_en_all", "wiktionary_es_all"]},
+        {"id": "dict-zh", "title": "English to Mandarin dictionary", "kiwix": ["wiktionary_en_all", "wiktionary_zh_all", "chinese.stackexchange.com_mul_all"]},
+        {"id": "dict-fr", "title": "English to French dictionary", "kiwix": ["wiktionary_en_all", "wiktionary_fr_all"]},
+        {"id": "encyclopedia", "title": "English and Spanish encyclopedia", "kiwix": ["wikipedia_en_all", "wikipedia_es_all"]},
+        {"id": "translator", "title": "Offline translator (phrasebook)", "kiwix": ["wikivoyage_en_all", "ready.gov_es_all"]}
+      ]
+    },
+    {
+      "id": "survival", "title": "Critical Survival Skills",
+      "topics": [
+        {"id": "fire", "title": "How to start a fire without matches", "kiwix": ["outdoors.stackexchange.com_en_all", "scoutwiki.org_en_all"]},
+        {"id": "fishing", "title": "How to fish", "kiwix": ["outdoors.stackexchange.com_en_all"]},
+        {"id": "hunting", "title": "How to hunt", "kiwix": ["outdoors.stackexchange.com_en_all"]},
+        {"id": "preserve-wild", "title": "How to preserve food in the wilderness", "kiwix": ["zimgit-food-preparation_en", "canadian-prepper_en_preppingfood"]},
+        {"id": "canning", "title": "Canning and preserving food in emergency", "kiwix": ["zimgit-food-preparation_en", "cooking.stackexchange.com_en_all"]},
+        {"id": "smoking", "title": "How to smoke foods", "kiwix": ["cooking.stackexchange.com_en_all", "zimgit-food-preparation_en"]},
+        {"id": "water", "title": "Water filtration", "kiwix": ["zimgit-water_en", "appropedia_en_all"]},
+        {"id": "shelter", "title": "How to build shelter", "kiwix": ["zimgit-post-disaster_en", "scoutwiki.org_en_all", "canadian-prepper_en_winterprepping"]},
+        {"id": "irrigation", "title": "Proper garden irrigation", "kiwix": ["gardening.stackexchange.com_en_all", "appropedia_en_all", "sustainability.stackexchange.com_en_all"]}
+      ]
+    },
+    {
+      "id": "supplemental", "title": "Supplemental Useful Skills",
+      "topics": [
+        {"id": "sewing", "title": "How to sew and weave", "kiwix": ["crafts.stackexchange.com_en_all", "wikibooks_en_all"]},
+        {"id": "knots", "title": "Knot tying", "kiwix": ["zimgit-knots_en", "wikipedia_en_knots"]},
+        {"id": "firearms", "title": "How to use a gun (safety & basics)", "kiwix": ["outdoors.stackexchange.com_en_all"]},
+        {"id": "swimming", "title": "How to swim", "kiwix": ["fitness.stackexchange.com_en_all"]},
+        {"id": "archery", "title": "How to use a bow and arrow", "kiwix": ["outdoors.stackexchange.com_en_all"]}
+      ]
+    },
+    {
+      "id": "tech", "title": "Tech & Mechanical Skills",
+      "topics": [
+        {"id": "electrical", "title": "Electrician book", "kiwix": ["diy.stackexchange.com_en_all", "electronics.stackexchange.com_en_all", "energypedia_en_all", "solar.lowtechmagazine.com_mul_all"]},
+        {"id": "mechanic", "title": "Car / mechanic book", "kiwix": ["mechanics.stackexchange.com_en_all", "ifixit_en_all"]},
+        {"id": "walkie", "title": "Create a walkie-talkie", "kiwix": ["ham.stackexchange.com_en_all", "electronics.stackexchange.com_en_all"]},
+        {"id": "radio", "title": "Communication through radio", "kiwix": ["ham.stackexchange.com_en_all", "ready.gov_en_all"]}
+      ]
+    },
+    {
+      "id": "firstaid", "title": "Injuries / First Aid",
+      "topics": [
+        {"id": "natural-medicine", "title": "Natural medicines", "kiwix": ["wikipedia_en_medicine", "gardenology_en_all"]},
+        {"id": "first-aid", "title": "How to administer first aid", "kiwix": ["zimgit-medicine_en", "irp.fas.org_en_military-medicine", "mdwiki_en_all", "wikipedia_es_medicine"]},
+        {"id": "cpr", "title": "CPR protocol", "kiwix": ["zimgit-medicine_en", "wikipedia_en_medicine"]},
+        {"id": "choking", "title": "Heimlich maneuver (choking)", "kiwix": ["zimgit-medicine_en", "mdwiki_en_all"]},
+        {"id": "wounds", "title": "Treating open wounds", "kiwix": ["irp.fas.org_en_military-medicine", "zimgit-medicine_en"]},
+        {"id": "burns", "title": "Treating burns", "kiwix": ["irp.fas.org_en_military-medicine", "wikipedia_en_medicine"]}
+      ]
+    },
+    {
+      "id": "food", "title": "Food Prep",
+      "topics": [
+        {"id": "butchering", "title": "How to butcher and fillet meat", "kiwix": ["cooking.stackexchange.com_en_all", "zimgit-food-preparation_en"]},
+        {"id": "wild-cookbook", "title": "Wild cookbook", "kiwix": ["based.cooking_en_all", "foss.cooking_en_all", "cooking.stackexchange.com_en_all"]},
+        {"id": "tea", "title": "Tea recipes", "kiwix": ["cooking.stackexchange.com_en_all", "gardenology_en_all"]},
+        {"id": "finding-spices", "title": "Finding spices", "kiwix": ["gardenology_en_all", "cooking.stackexchange.com_en_all"]}
+      ]
+    },
+    {
+      "id": "defense", "title": "Self Defense",
+      "topics": [
+        {"id": "wood-tools", "title": "How to make basic weapons from wood", "kiwix": ["outdoors.stackexchange.com_en_all", "scoutwiki.org_en_all"]},
+        {"id": "traps", "title": "Primal traps & perimeter alarms", "kiwix": ["outdoors.stackexchange.com_en_all", "trueprepper.com_en_all"]},
+        {"id": "predators", "title": "How to defend yourself from common predators", "kiwix": ["outdoors.stackexchange.com_en_all", "ready.gov_en_all", "martialarts.stackexchange.com_en_all"]}
+      ]
+    }
+  ],
+  "crawl_suggestions": [
+    {"title": "CDC – Emergency water treatment", "url": "https://www.cdc.gov/water-emergency/about/index.html", "pageLimit": 60, "topic": "water"},
+    {"title": "USDA – National Center for Home Food Preservation", "url": "https://nchfp.uga.edu/", "pageLimit": 400, "topic": "canning"},
+    {"title": "NOAA – Weather & climate education", "url": "https://www.noaa.gov/education/resource-collections/weather-atmosphere", "pageLimit": 150, "topic": "climate"},
+    {"title": "Ready.gov (fresh crawl)", "url": "https://www.ready.gov/", "pageLimit": 300, "topic": "shelter"}
+  ]
+}

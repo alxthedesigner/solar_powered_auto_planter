@@ -1,0 +1,520 @@
+<title>Solar Rain Planter</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column with the drawing breaking wide; tables scroll inside their own boxes on phones. */
+:root {
+  --paper: #f3f5f1; --sheet: #fdfefc; --ink: #1f2a26; --muted: #5b6a64; --rule: #d5ddd7;
+  --pipe: #2f74b5; --power: #c27a12; --signal: #2f8a57; --wifi: #7a55b8; --soil: #8a6a4a; --soil-fill: #e6d9c7;
+  --box: #ffffff; --water-fill: #d6e7f5; --leaf: #4f9a5f; --sun: #e0a422; --swap: #b4472f; --block: #c9cdc8;
+  --display: "Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+  --body: "IBM Plex Sans", -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #121815; --sheet: #18201c; --ink: #e3ebe6; --muted: #9db0a7; --rule: #2d3a34;
+  --pipe: #6aaee8; --power: #e9a84a; --signal: #5cc78a; --wifi: #ad8ef0; --soil: #c4a07c; --soil-fill: #3a2f24;
+  --box: #1e2823; --water-fill: #1d3346; --leaf: #6cbf7c; --sun: #f0bd4a; --swap: #ef8a6f; --block: #3b443f; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --paper: #121815; --sheet: #18201c; --ink: #e3ebe6; --muted: #9db0a7; --rule: #2d3a34;
+  --pipe: #6aaee8; --power: #e9a84a; --signal: #5cc78a; --wifi: #ad8ef0; --soil: #c4a07c; --soil-fill: #3a2f24;
+  --box: #1e2823; --water-fill: #1d3346; --leaf: #6cbf7c; --sun: #f0bd4a; --swap: #ef8a6f; --block: #3b443f; color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font: 16px/1.6 var(--body); margin: 0; }
+.page { max-width: 1120px; margin: 0 auto; padding-block: 40px 64px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: flex; flex-direction: column; gap: 40px; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.15; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(34px, 6vw, 56px); font-weight: 800; letter-spacing: -.02em; }
+h2 { font-size: 24px; font-weight: 800; }
+h3 { font-size: 17px; font-weight: 600; }
+p { margin: 0; }
+code { font-family: var(--mono); font-size: .88em; }
+a { color: var(--pipe); }
+.eyebrow { font: 500 12px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.lead { font-size: 18px; max-width: 68ch; color: var(--muted); }
+.lead b { color: var(--ink); font-weight: 600; }
+.muted { color: var(--muted); }
+.small { font-size: 14px; }
+header { display: flex; flex-direction: column; gap: 14px; }
+.sources { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 14px; color: var(--muted); }
+.sources span b { color: var(--ink); font-weight: 600; }
+
+figure { margin: 0; background: var(--sheet); border: 1px solid var(--rule); border-radius: 16px; overflow: hidden; }
+.diagram { overflow-x: auto; }
+.diagram svg { display: block; width: 100%; min-width: 820px; height: auto; }
+figcaption { border-top: 1px solid var(--rule); padding: 12px 18px; font-size: 14px; color: var(--muted); }
+
+/* drawing */
+svg text { font-family: var(--body); fill: var(--ink); }
+svg .t { font-size: 13px; font-weight: 600; }
+svg .s { font-size: 11px; fill: var(--muted); }
+svg .m { font-family: var(--mono); font-size: 10.5px; fill: var(--muted); }
+svg .box { fill: var(--box); stroke: var(--rule); stroke-width: 1.5; }
+svg .part { fill: var(--sheet); stroke: var(--muted); stroke-width: 1; }
+svg .enclosure { fill: none; stroke: var(--muted); stroke-width: 1.5; stroke-dasharray: 6 4; }
+svg .pipe { fill: none; stroke: var(--pipe); stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+svg .pipe.thin { stroke-width: 3; }
+svg .water { fill: var(--water-fill); }
+svg .tank { fill: none; stroke: var(--pipe); stroke-width: 2; }
+svg .pw { fill: none; stroke: var(--power); stroke-width: 2.2; stroke-linejoin: round; }
+svg .sg { fill: none; stroke: var(--signal); stroke-width: 1.8; stroke-linejoin: round; }
+svg .wf { fill: none; stroke: var(--wifi); stroke-width: 2; stroke-dasharray: 5 5; }
+svg .dot-sg { fill: var(--signal); } svg .dot-pw { fill: var(--power); }
+svg .soil { fill: var(--soil-fill); stroke: var(--soil); stroke-width: 2; }
+svg .leaf { fill: var(--leaf); } svg .stem { stroke: var(--leaf); stroke-width: 2; fill: none; }
+svg .sun { fill: var(--sun); } svg .ray { stroke: var(--sun); stroke-width: 2; stroke-linecap: round; }
+svg .panel { fill: var(--water-fill); stroke: var(--ink); stroke-width: 1.5; }
+svg .panel-grid { stroke: var(--ink); stroke-width: .6; opacity: .5; }
+svg .ground { stroke: var(--soil); stroke-width: 2; }
+svg .dim { stroke: var(--muted); stroke-width: 1; fill: none; }
+svg .arrow { fill: var(--muted); }
+svg .roof { fill: var(--rule); stroke: var(--muted); stroke-width: 1; }
+svg .block { fill: var(--block); stroke: var(--muted); stroke-width: 1; }
+
+/* reading sections */
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: 40px 48px; }
+section { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+ol.cycle, ol.steps { margin: 0; padding: 0; list-style: none; counter-reset: n; display: flex; flex-direction: column; gap: 12px; }
+ol.cycle li, ol.steps li { counter-increment: n; display: grid; grid-template-columns: 30px 1fr; gap: 10px; }
+ol.cycle li::before, ol.steps li::before { content: counter(n); font: 600 13px/28px var(--mono); width: 28px; height: 28px; border-radius: 14px; text-align: center; background: var(--sheet); border: 1px solid var(--rule); }
+ol.steps li b { display: block; }
+.tbl { overflow-x: auto; border: 1px solid var(--rule); border-radius: 12px; background: var(--sheet); }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+tr:last-child td { border-bottom: 0; }
+th { font: 500 11px/1.3 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); background: var(--paper); }
+td.n { font-variant-numeric: tabular-nums; white-space: nowrap; font-family: var(--mono); font-size: 13px; }
+.tag { font: 500 11px/1 var(--mono); padding: 3px 7px; border-radius: 999px; white-space: nowrap; border: 1px solid currentColor; display: inline-block; }
+.tag.rm { color: var(--pipe); } .tag.pw { color: var(--power); } .tag.new { color: var(--signal); }
+.tag.keep { color: var(--signal); } .tag.swap { color: var(--swap); } .tag.drop { color: var(--muted); }
+.note { border-left: 3px solid var(--power); padding: 4px 0 4px 14px; color: var(--muted); }
+.note b { color: var(--ink); }
+ul.plain { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 12px; }
+.card { background: var(--sheet); border: 1px solid var(--rule); border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.card dl { display: grid; grid-template-columns: auto 1fr; gap: 2px 12px; margin: 0; font-size: 14px; }
+.card dt { color: var(--muted); } .card dd { margin: 0; font-variant-numeric: tabular-nums; }
+.card.pick { border-color: var(--signal); }
+.paths { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 12px; }
+.paths div { background: var(--sheet); border: 1px solid var(--rule); border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.paths code { overflow-wrap: anywhere; }
+.paths span { font-size: 14px; color: var(--muted); }
+</style>
+
+<div class="page">
+<header>
+  <span class="eyebrow">Automated planter · build guide</span>
+  <h1>Solar Rain Planter</h1>
+  <p class="lead">A planter that waters itself from collected rain and runs on sunlight, with as few moving parts as possible. Rain fills a <b>55-gallon drum on a stand</b>, and gravity carries it through one valve per zone to a <b>2 × 6 ft bed</b>. There's no pump. A small solar panel keeps an ESP32 alive, waking every hour to check the soil. It runs with no outside power or network: a clock module keeps time and an SD card keeps every reading. When they're available, its readings reach the <b>Commune suite</b> through a Wi-Fi bridge, the SD card, or a settings page on your phone.</p>
+  <div class="sources">
+    <span><b>From Rainmaker 9000:</b> gravity feed, water rail, per-zone valves, ¼″ tubing, ml per watering on a schedule</span>
+    <span><b>From Plantwatery v12:</b> solar + 18650 power through a 5 V boost, deep sleep, watering when the soil is dry</span>
+  </div>
+</header>
+
+<figure>
+  <div class="diagram">
+  <svg viewBox="0 0 1120 720" role="img" aria-labelledby="dg-title dg-desc">
+    <title id="dg-title">Solar Rain Planter infrastructure</title>
+    <desc id="dg-desc">Rain runs off a roof into a gutter, through a first-flush diverter and mesh into a 55 gallon drum standing on concrete blocks, with an overflow and a low float switch. The drum outlet passes a shutoff and a filter, then a water rail splits it to two motorised ball valves feeding drip lines in two zones of a 2 by 6 foot bed. A solar panel charges 18650 cells through a TP4056; a 5 volt boost powers the ESP32 and the DRV8833 valve driver. Soil sensors, temperature probes and the float switch connect to the ESP32, which reports over Wi-Fi to a bridge computer that writes to the Commune drive.</desc>
+    <defs>
+      <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" class="arrow"/></marker>
+      <marker id="ahw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 10 5 0 10z" fill="var(--pipe)"/></marker>
+    </defs>
+
+    <line x1="10" y1="692" x2="880" y2="692" class="ground"/>
+
+    <!-- roof, gutter, first flush -->
+    <polygon points="10,16 210,16 236,44 10,44" class="roof"/>
+    <text x="20" y="35" class="s">Roof: 1 mm of rain on 1 m² = 1 L</text>
+    <path d="M10 46 H160 V58 H10" class="pipe thin"/>
+    <text x="168" y="62" class="s">gutter</text>
+    <path d="M130 58 V150 H205 V178" class="pipe"/>
+    <path d="M130 150 V300" class="pipe" style="stroke-width:14;opacity:.55"/>
+    <circle cx="130" cy="306" r="4" fill="var(--pipe)"/>
+    <text x="18" y="196" class="t">First flush</text>
+    <text x="18" y="211" class="s">fills first with the</text>
+    <text x="18" y="224" class="s">dirtiest roof water,</text>
+    <text x="18" y="237" class="s">then rain goes on</text>
+    <text x="18" y="250" class="s">to the drum</text>
+    <text x="18" y="326" class="m">slow drip empties it</text>
+    <path d="M192 168 H218" stroke="var(--muted)" stroke-width="2" stroke-dasharray="2 2"/>
+    <text x="224" y="166" class="s">mesh screen</text>
+
+    <!-- drum -->
+    <path d="M150 236 H330 V390 a10 10 0 0 1 -10 10 H160 a10 10 0 0 1 -10 -10 Z" class="water"/>
+    <rect x="150" y="178" width="180" height="222" rx="10" class="tank"/>
+    <line x1="150" y1="250" x2="330" y2="250" stroke="var(--pipe)" stroke-width="1" opacity=".5"/>
+    <line x1="150" y1="330" x2="330" y2="330" stroke="var(--pipe)" stroke-width="1" opacity=".5"/>
+    <text x="240" y="282" class="t" text-anchor="middle">55-gal drum</text>
+    <text x="240" y="298" class="s" text-anchor="middle">208 L · opaque · lidded</text>
+    <text x="240" y="311" class="s" text-anchor="middle">≈ 480 lb when full</text>
+    <line x1="176" y1="356" x2="176" y2="388" stroke="var(--muted)" stroke-width="2"/>
+    <rect x="168" y="364" width="16" height="10" rx="5" fill="var(--signal)"/>
+    <text x="192" y="372" class="s">low float</text>
+    <path d="M330 196 H372 V258" class="pipe thin" marker-end="url(#ahw)"/>
+    <text x="380" y="226" class="s">overflow, as wide</text>
+    <text x="380" y="239" class="s">as the inlet, led</text>
+    <text x="380" y="252" class="s">away from the bed</text>
+
+    <!-- block stand -->
+    <g>
+      <rect x="150" y="404" width="88" height="40" class="block"/><rect x="242" y="404" width="88" height="40" class="block"/>
+      <rect x="150" y="448" width="40" height="40" class="block"/><rect x="194" y="448" width="88" height="40" class="block"/><rect x="286" y="448" width="44" height="40" class="block"/>
+      <rect x="150" y="492" width="88" height="40" class="block"/><rect x="242" y="492" width="88" height="40" class="block"/>
+      <rect x="142" y="536" width="196" height="12" class="block"/>
+    </g>
+    <text x="240" y="566" class="s" text-anchor="middle">concrete-block stand, 3 courses</text>
+    <text x="240" y="579" class="s" text-anchor="middle">(24 in), on a level gravel pad</text>
+    <rect x="128" y="548" width="224" height="10" fill="var(--soil-fill)" stroke="var(--soil)" stroke-width="1"/>
+    <!-- head height -->
+    <path d="M110 404 V596" class="dim" marker-start="url(#ah)" marker-end="url(#ah)"/>
+    <text x="18" y="470" class="t">Head</text>
+    <text x="18" y="485" class="s">drum bottom to</text>
+    <text x="18" y="498" class="s">drip line: 2 ft+</text>
+    <text x="18" y="511" class="m">≈ 0.06 bar empty,</text>
+    <text x="18" y="524" class="m">≈ 0.15 bar full</text>
+
+    <!-- outlet, shutoff, filter, water rail, valves -->
+    <path d="M330 384 H352 V470 H470 V530" class="pipe"/>
+    <circle cx="352" cy="410" r="7" fill="var(--sheet)" stroke="var(--pipe)" stroke-width="2"/>
+    <line x1="346" y1="404" x2="358" y2="416" stroke="var(--pipe)" stroke-width="2"/>
+    <text x="364" y="404" class="s">hand</text>
+    <text x="364" y="416" class="s">shutoff</text>
+    <rect x="340" y="432" width="24" height="26" rx="4" class="part"/>
+    <text x="368" y="450" class="s">filter</text>
+    <text x="402" y="465" class="m">water rail</text>
+    <path d="M400 470 V488" class="pipe"/>
+    <rect x="386" y="488" width="28" height="28" rx="5" class="part" style="stroke:var(--pipe);stroke-width:2"/>
+    <circle cx="400" cy="502" r="7" fill="none" stroke="var(--pipe)" stroke-width="2"/><line x1="393" y1="502" x2="407" y2="502" stroke="var(--pipe)" stroke-width="2"/>
+    <path d="M400 516 V596 H540" class="pipe thin"/>
+    <rect x="456" y="530" width="28" height="28" rx="5" class="part" style="stroke:var(--pipe);stroke-width:2"/>
+    <circle cx="470" cy="544" r="7" fill="none" stroke="var(--pipe)" stroke-width="2"/><line x1="470" y1="537" x2="470" y2="551" stroke="var(--pipe)" stroke-width="2"/>
+    <path d="M470 558 V584 H740" class="pipe thin"/>
+    <text x="380" y="507" class="t" text-anchor="end">Valve 1</text>
+    <text x="452" y="549" class="t" text-anchor="end">Valve 2</text>
+    <text x="380" y="530" class="s" text-anchor="end">5 V ball</text>
+    <text x="380" y="543" class="s" text-anchor="end">valves</text>
+
+    <!-- planter -->
+    <rect x="380" y="610" width="380" height="82" class="soil"/>
+    <line x1="570" y1="610" x2="570" y2="692" stroke="var(--soil)" stroke-width="2" stroke-dasharray="4 3"/>
+    <text x="392" y="684" class="t">Zone 1 · 2 × 3 ft</text>
+    <text x="582" y="684" class="t">Zone 2 · 2 × 3 ft</text>
+    <g fill="var(--pipe)">
+      <circle cx="430" cy="603" r="2.5"/><circle cx="480" cy="603" r="2.5"/><circle cx="530" cy="603" r="2.5"/>
+      <circle cx="610" cy="591" r="2.5"/><circle cx="670" cy="591" r="2.5"/><circle cx="730" cy="591" r="2.5"/>
+    </g>
+    <text x="766" y="588" class="s">¼″ drip lines,</text>
+    <text x="766" y="601" class="s">holes at each plant</text>
+    <g>
+      <path d="M455 610 V572" class="stem"/><ellipse cx="447" cy="580" rx="9" ry="5" class="leaf" transform="rotate(-30 447 580)"/><ellipse cx="463" cy="572" rx="9" ry="5" class="leaf" transform="rotate(30 463 572)"/>
+      <path d="M640 610 V566" class="stem"/><ellipse cx="632" cy="574" rx="9" ry="5" class="leaf" transform="rotate(-30 632 574)"/><ellipse cx="648" cy="566" rx="9" ry="5" class="leaf" transform="rotate(30 648 566)"/>
+      <path d="M705 610 V578" class="stem"/><ellipse cx="698" cy="584" rx="8" ry="4.5" class="leaf" transform="rotate(-30 698 584)"/>
+    </g>
+    <rect x="514" y="606" width="12" height="40" rx="2" fill="var(--signal)" opacity=".85"/>
+    <rect x="597" y="606" width="6" height="30" rx="3" fill="var(--signal)"/>
+    <rect x="694" y="606" width="12" height="40" rx="2" fill="var(--signal)" opacity=".85"/>
+    <text x="474" y="660" class="m">moisture 1</text>
+    <text x="606" y="650" class="m">soil °C</text>
+    <text x="710" y="660" class="m">moisture 2</text>
+
+    <!-- sun and panel -->
+    <circle cx="520" cy="72" r="15" class="sun"/>
+    <g class="ray"><line x1="520" y1="44" x2="520" y2="50"/><line x1="520" y1="94" x2="520" y2="100"/><line x1="492" y1="72" x2="498" y2="72"/><line x1="542" y1="72" x2="548" y2="72"/><line x1="500" y1="52" x2="504" y2="56"/><line x1="536" y1="88" x2="540" y2="92"/><line x1="500" y1="92" x2="504" y2="88"/><line x1="536" y1="56" x2="540" y2="52"/></g>
+    <polygon points="580,48 760,48 780,112 560,112" class="panel"/>
+    <g class="panel-grid"><line x1="625" y1="48" x2="615" y2="112"/><line x1="670" y1="48" x2="670" y2="112"/><line x1="715" y1="48" x2="725" y2="112"/><line x1="570" y1="80" x2="770" y2="80"/></g>
+    <text x="400" y="66" class="t">Solar panel</text>
+    <text x="400" y="81" class="s">6 V, 2 W or more,</text>
+    <text x="400" y="94" class="s">faces midday sun</text>
+    <path d="M670 112 V160 H570 V214" class="pw"/>
+
+    <!-- control box -->
+    <rect x="500" y="190" width="340" height="262" rx="12" class="enclosure"/>
+    <text x="508" y="183" style="font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;fill:var(--muted)">WEATHERPROOF BOX</text>
+    <rect x="515" y="214" width="112" height="40" rx="6" class="box"/>
+    <text x="571" y="231" class="t" text-anchor="middle">TP4056</text><text x="571" y="246" class="s" text-anchor="middle">charger + protection</text>
+    <rect x="515" y="278" width="112" height="40" rx="6" class="box"/>
+    <text x="571" y="295" class="t" text-anchor="middle">2 × 18650</text><text x="571" y="310" class="s" text-anchor="middle">3.7 V, in parallel</text>
+    <rect x="515" y="342" width="112" height="40" rx="6" class="box"/>
+    <text x="571" y="359" class="t" text-anchor="middle">5 V boost</text><text x="571" y="374" class="s" text-anchor="middle">TPS61023</text>
+    <path d="M571 254 V278 M571 318 V342" class="pw"/>
+    <rect x="690" y="214" width="136" height="72" rx="6" class="box"/>
+    <text x="758" y="236" class="t" text-anchor="middle">ESP32</text><text x="758" y="252" class="s" text-anchor="middle">+ DS3231 clock</text><text x="758" y="265" class="s" text-anchor="middle">+ microSD log</text><text x="758" y="278" class="s" text-anchor="middle">+ setup button</text>
+    <rect x="690" y="318" width="136" height="44" rx="6" class="box"/>
+    <text x="758" y="336" class="t" text-anchor="middle">DRV8833</text><text x="758" y="351" class="s" text-anchor="middle">valve driver</text>
+    <path d="M627 362 H655 V250 H690 M655 340 H690" class="pw"/>
+    <text x="634" y="300" class="m" transform="rotate(-90 646 300)">5 V</text>
+    <path d="M740 286 V318" class="sg"/>
+    <path d="M722 362 V412 H500" class="pw"/>
+    <path d="M762 362 V436 H500" class="pw"/>
+    <path d="M500 412 H430 V502 H414" class="pw"/>
+    <path d="M500 436 H492 V544 H484" class="pw"/>
+    <circle cx="500" cy="412" r="3.5" class="dot-pw"/><circle cx="500" cy="436" r="3.5" class="dot-pw"/>
+    <text x="508" y="406" class="m">valve 1 · GPIO 25/26</text>
+    <text x="508" y="430" class="m">valve 2 · GPIO 27/14</text>
+    <path d="M184 368 H192 V390 H500" class="sg"/>
+    <circle cx="500" cy="390" r="3.5" class="dot-sg"/>
+    <text x="494" y="385" class="m" text-anchor="end">drum float · 13</text>
+    <path d="M520 606 V452 M600 606 V452 M700 606 V452" class="sg"/>
+    <circle cx="520" cy="452" r="3.5" class="dot-sg"/><circle cx="600" cy="452" r="3.5" class="dot-sg"/><circle cx="700" cy="452" r="3.5" class="dot-sg"/>
+    <text x="526" y="470" class="m">35</text><text x="606" y="470" class="m">16</text><text x="706" y="470" class="m">34</text>
+    <path d="M826 270 H862 V300" class="sg"/>
+    <rect x="858" y="300" width="8" height="26" rx="4" fill="var(--signal)"/>
+    <text x="852" y="344" class="m" text-anchor="middle">air °C</text>
+
+    <!-- Wi-Fi, bridge, drive -->
+    <path d="M826 228 H900" class="wf"/>
+    <text x="850" y="220" class="m" style="fill:var(--wifi)">Wi-Fi</text>
+    <rect x="900" y="200" width="196" height="62" rx="10" class="box"/>
+    <text x="998" y="222" class="t" text-anchor="middle">Raspberry Pi bridge</text>
+    <text x="998" y="238" class="s" text-anchor="middle">always on: keeps readings</text>
+    <text x="998" y="251" class="s" text-anchor="middle">and settings (mailbox)</text>
+    <path d="M998 264 V316" class="wf" marker-start="url(#ah)" marker-end="url(#ah)"/>
+    <text x="1004" y="294" class="m" style="fill:var(--wifi)">home Wi-Fi</text>
+    <rect x="900" y="318" width="196" height="80" rx="10" class="box" style="stroke:var(--ink)"/>
+    <text x="998" y="340" class="t" text-anchor="middle">Commune app (Mac / PC)</text>
+    <text x="998" y="356" class="s" text-anchor="middle">Planter page · planter data</text>
+    <text x="998" y="369" class="s" text-anchor="middle">kept here · internet for ZIMs</text>
+    <text x="998" y="386" class="m" text-anchor="middle">← SD card: import / write</text>
+    <path d="M998 400 V452" class="dim" marker-start="url(#ah)" marker-end="url(#ah)"/>
+    <text x="1004" y="430" class="m">USB</text>
+    <rect x="900" y="454" width="196" height="76" rx="10" class="box"/>
+    <text x="998" y="476" class="t" text-anchor="middle">Life identifier device</text>
+    <text x="998" y="492" class="m" text-anchor="middle">zim/ libraries</text>
+    <text x="998" y="506" class="m" text-anchor="middle">field-id/ finds</text>
+    <text x="998" y="520" class="m" text-anchor="middle">knowledge base</text>
+    <rect x="900" y="64" width="196" height="62" rx="10" class="box"/>
+    <text x="998" y="87" class="t" text-anchor="middle">Your phone</text>
+    <text x="998" y="103" class="s" text-anchor="middle">setup page on the planter's</text>
+    <text x="998" y="116" class="s" text-anchor="middle">own hotspot (press button)</text>
+    <path d="M800 214 V95 H898" class="wf"/>
+
+    <g transform="translate(900 590)">
+      <text x="0" y="0" class="m" style="letter-spacing:.1em">KEY</text>
+      <line x1="0" y1="20" x2="34" y2="20" class="pipe thin"/><text x="44" y="24" class="s">water</text>
+      <line x1="0" y1="42" x2="34" y2="42" class="pw"/><text x="44" y="46" class="s">power and valve drive</text>
+      <line x1="0" y1="64" x2="34" y2="64" class="sg"/><text x="44" y="68" class="s">sensor signal (GPIO)</text>
+      <line x1="0" y1="86" x2="34" y2="86" class="wf"/><text x="44" y="90" class="s">local Wi-Fi, no internet</text>
+    </g>
+  </svg>
+  </div>
+  <figcaption>Water moves by gravity alone. The only moving parts are the two valve motors, which run for about 6 seconds per opening or closing.</figcaption>
+</figure>
+
+<section>
+  <span class="eyebrow">Raising the drum</span>
+  <h2>How high, and on what</h2>
+  <p style="max-width:72ch"><b>It doesn't have to be a metre off the ground.</b> What matters is the height from the <b>bottom of the drum to the drip line</b>. That height (the head) is what pushes water out of the holes. Aim for <b>2 ft (60 cm) or more</b>. More head waters faster but needs a taller, sturdier stand. Measure from the bed's soil surface, so a 1 ft raised bed needs the drum's bottom about 3 ft off the ground.</p>
+  <div class="cards">
+    <div class="card pick"><b>Concrete blocks · the cheapest choice</b><span class="small muted">For beds at or near ground level</span>
+      <dl><dt>Height</dt><dd>3 courses of 8 × 8 × 16 in blocks = 24 in</dd><dt>Footprint</dt><dd>at least 24 × 24 in, wider than the drum</dd><dt>Cost</dt><dd>about 9–12 blocks, roughly $20–40</dd></dl>
+      <span class="small">Lay the blocks flat with the holes facing up, turning each course 90° to the one below so the joints overlap. Cap the top with solid blocks or a paver. Don't dry-stack higher than 3 courses.</span></div>
+    <div class="card"><b>Timber stand · for 30–36 in</b><span class="small muted">For a raised bed, or more flow</span>
+      <dl><dt>Frame</dt><dd>four pressure-treated 4 × 4 legs, a 2 × 6 apron, a deck of 2 × 6 boards</dd><dt>Bracing</dt><dd>diagonal braces on at least two sides</dd><dt>Cost</dt><dd>roughly $60–100 in lumber and screws</dd></dl>
+      <span class="small">Build it to hold 500 lb or more. Set the legs on pavers, not bare soil.</span></div>
+  </div>
+  <ul class="plain small">
+    <li><b>Weight:</b> 55 gal of water weighs about 460 lb, so a full drum is about 480 lb (220 kg). Put the stand on a level pad of compacted gravel or pavers, never soft soil. A tilt grows as the ground settles.</li>
+    <li><b>Strap it</b> to a wall, fence post or the stand with a ratchet strap. A full drum is top-heavy.</li>
+    <li><b>Don't use</b> a single wood pallet, a stand rated under 500 lb, or a tall stack of blocks without bracing.</li>
+    <li><b>Flow drops as the drum empties</b>, because there's less water pushing. Watering is timed, so calibrate at half full (below), or add the optional flow sensor to measure each watering exactly.</li>
+  </ul>
+</section>
+
+<section>
+  <span class="eyebrow">What a zone is</span>
+  <h2>Two zones, each watered its own way</h2>
+  <p style="max-width:72ch">A zone is a group of plants that share one valve, one drip line and one soil sensor. The 2 × 6 ft bed splits into two 2 × 3 ft zones. Each zone picks <b>when to water</b> on Commune's Planter page:</p>
+  <div class="cards">
+    <div class="card pick"><b>When the soil is dry · the default</b><span class="small">At each watering hour, it waters only if the zone's soil is below its threshold. This uses the least water, as in Plantwatery.</span></div>
+    <div class="card"><b>On a schedule</b><span class="small">It waters the set amount at every watering hour, every N days (1 = daily, 7 = weekly), whatever the soil says, as in Rainmaker 9000. For hourly watering, set the watering hours to a range like <code>6-20</code>.</span></div>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>Default per zone (2 × 3 ft)</th><th>Setting</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr><td>Watering hours</td><td class="n">7:00, 19:00</td><td>Cool parts of the day, so less water evaporates</td></tr>
+      <tr><td>Water when moisture is below</td><td class="n">40 %</td><td>A common point to water vegetables, once the sensor is calibrated</td></tr>
+      <tr><td>Water per watering</td><td class="n">1 000 ml</td><td>Twice a day is 2 L per zone and 4 L for the bed: about 1 in of water a week</td></tr>
+      <tr><td>Most per day</td><td class="n">4 000 ml</td><td>Room for hot weather (about 2 in a week) if you raise the amount toward 2 000 ml</td></tr>
+    </tbody>
+  </table></div>
+  <p class="small muted">A full drum holds about 7 weeks of mild-weather watering for this bed, or about 3½ weeks of summer watering, before any rain.</p>
+</section>
+
+<section>
+  <span class="eyebrow">Your Rainmaker 9000 hardware</span>
+  <h2>What to keep, what to swap</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Rainmaker part</th><th></th><th>In this build</th></tr></thead>
+    <tbody>
+      <tr><td>Top-mounted reservoir</td><td><span class="tag drop">not needed</span></td><td>The raised drum is the reservoir.</td></tr>
+      <tr><td>Water rail</td><td><span class="tag keep">keep</span></td><td>Splits the drum's outlet to the two valves, after the filter. Rainmaker's printed rail works, or use a plain barbed tee.</td></tr>
+      <tr><td>¼″ OD tubing and fittings</td><td><span class="tag keep">keep</span></td><td>For the drip lines, with holes punched at each plant. If the drum is more than about 10 ft (3 m) from the valves, run ½″ hose to the rail first. Wider pipe loses less of the low gravity pressure.</td></tr>
+      <tr><td>Bottle-cap-to-hose adapter (print)</td><td><span class="tag drop">not needed</span></td><td>It turns a bottle into a reservoir, and the drum replaces that. Use a drum bulkhead fitting instead.</td></tr>
+      <tr><td>Stakes (print)</td><td><span class="tag keep">optional</span></td><td>They hold the drip lines in place. Bent wire or landscape staples do the same job.</td></tr>
+      <tr><td>Housing prints</td><td><span class="tag keep">optional</span></td><td>Useful as a valve housing. They're sized for Rainmaker's solenoids, so check that the ball valves fit.</td></tr>
+      <tr><td>2 × 12 V solenoid valves</td><td><span class="tag swap">swap</span></td><td><b>5 V motorised ball valves</b>, 2-wire, DN8 (¼″). They draw power only while turning (~6 s) and open fully at the drum's low pressure. A solenoid draws ~0.5 A all the time it's open.</td></tr>
+      <tr><td>2 × 12 V relays</td><td><span class="tag swap">swap</span></td><td><b>DRV8833</b>: a ball valve closes by reversing its motor, which a relay can't do.</td></tr>
+      <tr><td>12 V supply + 5 V buck</td><td><span class="tag swap">swap</span></td><td>Plantwatery v12's solar chain: panel → TP4056 → 18650 → TPS61023 5 V</td></tr>
+      <tr><td>ESP32 CYD touchscreen</td><td><span class="tag swap">swap</span></td><td>ESP32 DevKit, which deep-sleeps. The settings move to Commune's Planter page.</td></tr>
+      <tr><td>ml per valve, daily/weekly</td><td><span class="tag keep">keep</span></td><td>As a zone's <b>On a schedule</b> mode: ml per watering, every N days.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<div class="grid2">
+  <section>
+    <span class="eyebrow">What it does every hour</span>
+    <h2>One wake cycle</h2>
+    <ol class="cycle">
+      <li><span>Wakes from deep sleep and, if the last start wasn't a planned wake, <b>closes every valve</b> first. Sets its clock from the clock module, and uses the SD card's settings file if it was edited. If the setup button woke it, it opens the phone page first.</span></li>
+      <li><span>Powers the sensors for a moment and reads soil moisture per zone, soil and air temperature, battery, solar and the drum's float.</span></li>
+      <li><span>At a watering hour, it waters each zone by that zone's mode, unless the drum is low, the battery is below its minimum or the zone has had its daily limit.</span></li>
+      <li><span>Logs the reading and anything it did to the SD card. Every third reading, and straight after watering, it also posts to the bridge, whose reply brings new settings from Commune.</span></li>
+      <li><span>Holds the valve pins low and sleeps until the next reading or watering hour. If Wi-Fi is down it keeps up to 48 readings and keeps watering on its last settings.</span></li>
+    </ol>
+  </section>
+  <section>
+    <span class="eyebrow">Low pressure matters</span>
+    <h2>Gravity rules</h2>
+    <ul class="plain">
+      <li><b>No pressure-compensating drippers.</b> They need about 1 bar, and the drum gives 0.06–0.15 bar. Use punched holes or open-ended drip tube.</li>
+      <li><b>Outlet near the bottom, not on it.</b> Fit the bulkhead 2–3 in above the drum's floor so sediment stays behind.</li>
+      <li><b>A hand shutoff</b> at the outlet lets you clean the filter or change a valve without draining the drum.</li>
+      <li><b>Optional pump add-on:</b> if you later want the drum on the ground, set <code>PIN_PUMP</code> to 33. The firmware will then refill a small raised header tank from the drum (header full float on GPIO 18). It's off by default to keep moving parts to a minimum.</li>
+    </ul>
+  </section>
+</div>
+
+<section>
+  <span class="eyebrow">Parts</span>
+  <h2>Parts list</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Qty</th><th>Part</th><th>Notes</th><th>From</th></tr></thead>
+    <tbody>
+      <tr><td class="n">1</td><td>55-gal (208 L) food-grade drum, with a lid</td><td>Opaque, so algae can't grow. Screen the inlet against mosquitoes.</td><td><span class="tag new">new</span></td></tr>
+      <tr><td class="n">1</td><td>Drum stand: 9–12 concrete blocks + gravel, or a 4 × 4 timber stand</td><td>See "How high, and on what" above.</td><td><span class="tag new">new</span></td></tr>
+      <tr><td class="n">1</td><td>First-flush diverter, gutter fittings, overflow pipe</td><td>Divert roughly 1 L per 1 m² of roof. Make the overflow as wide as the inlet.</td><td><span class="tag new">new</span></td></tr>
+      <tr><td class="n">1</td><td>Bulkhead fitting, hand shutoff valve, inline filter</td><td>Bulkhead 2–3 in above the drum's floor.</td><td><span class="tag rm">Rainmaker</span></td></tr>
+      <tr><td class="n">1</td><td>Water rail (or barbed tee), ¼″ tubing, fittings, end stoppers</td><td>½″ hose to the rail for long runs.</td><td><span class="tag rm">Rainmaker</span></td></tr>
+      <tr><td class="n">2</td><td>5 V motorised ball valve, 2-wire (CR01), DN8 ¼″</td><td>Replace the solenoids.</td><td><span class="tag new">new</span></td></tr>
+      <tr><td class="n">1</td><td>DRV8833 dual motor driver</td><td>Replaces the relays. SLP goes to GPIO 17.</td><td><span class="tag new">new</span></td></tr>
+      <tr><td class="n">1</td><td>Vertical float switch</td><td>Near the drum's floor: watering stops when the drum is low.</td><td><span class="tag new">new</span></td></tr>
+      <tr><td class="n">1</td><td>ESP32 DevKit (ESP-WROOM-32)</td><td>A board with no USB chip or power LED sleeps on less current.</td><td><span class="tag pw">Plantwatery</span></td></tr>
+      <tr><td class="n">1</td><td>Solar panel, 6 V, 2 W or more</td><td>Twice Plantwatery's panel, to cover the valve motors and cloudy weeks.</td><td><span class="tag pw">Plantwatery</span></td></tr>
+      <tr><td class="n">1</td><td>TP4056 <i>with protection</i></td><td>The 6-pad version (IN±, B±, OUT±) with the DW01 chip.</td><td><span class="tag pw">Plantwatery</span></td></tr>
+      <tr><td class="n">2</td><td>18650 cells + 2-cell holder, in parallel</td><td>Same brand, charged to the same voltage before you join them.</td><td><span class="tag pw">Plantwatery</span></td></tr>
+      <tr><td class="n">1</td><td>TPS61023 5 V boost (Adafruit)</td><td>Powers the ESP32 and the DRV8833.</td><td><span class="tag pw">Plantwatery</span></td></tr>
+      <tr><td class="n">2</td><td>Capacitive soil moisture sensor v1.2</td><td>Seal the electronics end.</td><td><span class="tag pw">Plantwatery</span></td></tr>
+      <tr><td class="n">2</td><td>DS18B20 waterproof probes + 4.7 kΩ</td><td>Soil and shaded air temperature.</td><td><span class="tag new">new</span></td></tr>
+      <tr><td class="n">1 set</td><td>Resistors 27 k + 100 k, 100 k + 47 k</td><td>Battery and panel voltage dividers.</td><td><span class="tag pw">Plantwatery</span></td></tr>
+      <tr><td class="n">1</td><td>Weatherproof box, cable glands, screw terminals, perfboard</td><td>Screw terminals make the long outdoor wires easy to swap.</td><td><span class="tag pw">Plantwatery</span></td></tr>
+      <tr><td class="n">1</td><td>DS3231 clock module + CR2032 coin cell</td><td>Keeps time through power cuts. If the module has a charging circuit, use an LIR2032 cell or remove its charging resistor.</td><td><span class="tag new">new</span></td></tr>
+      <tr><td class="n">1</td><td>microSD card module (SPI, 3.3 V) + 4–32 GB card, FAT32</td><td>Logs every reading and holds a settings file: works with no network.</td><td><span class="tag new">new</span></td></tr>
+      <tr><td class="n">1</td><td>Waterproof momentary push button</td><td>Opens the phone setup page.</td><td><span class="tag new">new</span></td></tr>
+      <tr><td class="n">1</td><td>Raspberry Pi 4 or 5 (2 GB), power supply, 32 GB microSD, case</td><td>The Wi-Fi bridge, indoors on mains power. Optional: the SD card and phone page work without it.</td><td><span class="tag new">new</span></td></tr>
+      <tr><td class="n">opt.</td><td>Flow sensor (YF-S401) after the rail</td><td>Measures real ml even as the drum's flow drops. Set <code>PIN_FLOW</code> to use it.</td><td><span class="tag new">new</span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="note"><b>Not needed:</b> a pump or header tank (an optional add-on), the MCP1700 LDO, the IRF520N board, Rainmaker's reservoir and bottle-cap adapter, and its 12 V supply, buck converter, relays and CYD board.</p>
+</section>
+
+<div class="grid2">
+  <section>
+    <span class="eyebrow">Wiring</span>
+    <h2>ESP32 pins</h2>
+    <div class="tbl"><table>
+      <thead><tr><th>Pin</th><th>Goes to</th></tr></thead>
+      <tbody>
+        <tr><td class="n">VIN · GND</td><td>Boost 5 V out. The boost's input goes to the TP4056 OUT±, and the cells to B±.</td></tr>
+        <tr><td class="n">25 · 26</td><td>DRV8833 AIN1 · AIN2. AOUT1/2 go to valve 1.</td></tr>
+        <tr><td class="n">27 · 14</td><td>DRV8833 BIN1 · BIN2. BOUT1/2 go to valve 2. VM is boost 5 V.</td></tr>
+        <tr><td class="n">17</td><td>DRV8833 SLP/EEP</td></tr>
+        <tr><td class="n">5 · 18 · 19 · 23</td><td>microSD module CS · SCK · MISO · MOSI (VCC 3.3 V)</td></tr>
+        <tr><td class="n">21 · 22</td><td>DS3231 SDA · SCL (VCC 3.3 V)</td></tr>
+        <tr><td class="n">15</td><td>Setup button, other side to GND</td></tr>
+        <tr><td class="n">2</td><td>On-board LED: lit while the setup hotspot is open</td></tr>
+        <tr><td class="n">13</td><td>Drum low float, other side to GND</td></tr>
+        <tr><td class="n">4</td><td>Sensor power: soil sensor and DS18B20 VCC</td></tr>
+        <tr><td class="n">35 · 34</td><td>Soil sensor AOUT, zone 1 (as in v12) · zone 2</td></tr>
+        <tr><td class="n">16</td><td>DS18B20 data, with 4.7 kΩ to pin 4</td></tr>
+        <tr><td class="n">32</td><td>Battery + through 27 k, with 100 k to GND (as in v12)</td></tr>
+        <tr><td class="n">39 (VN)</td><td>Panel + through 100 k, with 47 k to GND</td></tr>
+      </tbody>
+    </table></div>
+    <p class="muted small">The pump add-on uses 33 (pump MOSFET) and 12 (header full float). Every pin can be changed in <code>planter_config.h</code>.</p>
+  </section>
+  <section>
+    <span class="eyebrow">Build order</span>
+    <h2>Building it</h2>
+    <ol class="steps">
+      <li><span><b>Pad and stand.</b> Level and compact a gravel pad, then build the block or timber stand on it. Set the empty drum on top and strap it.</span></li>
+      <li><span><b>Plumbing.</b> Fit the bulkhead, shutoff, filter, water rail, both valves and the drip lines. Then the gutter, first flush, inlet screen and overflow. Fill the drum and check every joint. Test each valve with 5 V from a supply, swapping its wires to close it.</span></li>
+      <li><span><b>Power on the bench.</b> Panel → TP4056 → cells → boost. Check for 5 V, then wire it to the ESP32 VIN and the DRV8833 VM.</span></li>
+      <li><span><b>Driver and sensors.</b> Follow the pin table, and bring every outdoor wire to a screw terminal.</span></li>
+      <li><span><b>Firmware.</b> Format the microSD card as FAT32 and put it in. Copy <code>config_example.h</code> to <code>planter_config.h</code> and fill in Wi-Fi, the bridge address and key, and a setup password. Then run <code>pio run -t upload</code> and watch <code>pio device monitor</code>. Press the setup button once to set the clock from your phone.</span></li>
+      <li><span><b>Bridge and Commune.</b> On the Raspberry Pi, run <code>python3 -m commune_link.bridge --key …</code>. In Commune's Planter page, enter the Pi's address and key, then calibrate and check each zone's settings. No Pi? Use the SD card and the phone page.</span></li>
+    </ol>
+  </section>
+</div>
+
+<div class="grid2">
+  <section>
+    <span class="eyebrow">Ten minutes, once</span>
+    <h2>Calibrate</h2>
+    <ul class="plain">
+      <li><b>Soil sensors.</b> Note the millivolts the monitor prints with the sensor in air (<code>MOISTURE_DRY_MV</code>) and in water up to its line (<code>MOISTURE_WET_MV</code>).</li>
+      <li><b>Flow per zone.</b> With the drum <b>about half full</b>, catch one zone's water for 60 s. Set <code>MS_PER_ML</code> to 60000 ÷ ml caught. Each watering is then about right on average: a little more when the drum is full, a little less when it's low.</li>
+      <li><b>Valve travel.</b> Time a valve from shut to open and set <code>VALVE_TRAVEL_MS</code> about 1 s longer.</li>
+    </ul>
+  </section>
+  <section>
+    <span class="eyebrow">Fail safe</span>
+    <h2>Safety</h2>
+    <ul class="plain">
+      <li>After any unplanned reset the board closes every valve first, and the valve pins are held low while it sleeps.</li>
+      <li>A valve never stays open longer than <code>MAX_OPEN_MS</code>, each zone has a daily limit, and nothing waters when the drum's float is low or the battery is below its minimum.</li>
+      <li>The stand carries about 480 lb: level pad, strapped drum, no soft ground.</li>
+      <li>Keep the box out of direct rain and the cells out of hot sun: lithium cells shouldn't charge below 0 °C or above 45 °C.</li>
+    </ul>
+  </section>
+</div>
+
+<section id="adding-zones">
+  <span class="eyebrow">Growing the planter</span>
+  <h2>Adding zones and drums</h2>
+  <p>The firmware handles up to <b>8 zones</b> and <b>4 drums</b>. Each zone has its own valve, drip line and soil sensor, and is fed by one drum. When a drum runs low, only the zones it feeds stop watering. After two zones the ESP32 has no free pins, so a bigger planter adds two small boards to the clock module's I²C wires (SDA 21, SCL 22, 3.3 V). The boost still copes, because only one valve moves at a time.</p>
+  <div class="grid2">
+    <div class="tbl"><table>
+      <thead><tr><th>Add</th><th>For</th><th>What it needs</th></tr></thead>
+      <tbody>
+        <tr><td><b>MCP23017</b> expander, once</td><td>valves and drum floats</td><td>16 pins. In the config, pin <i>n</i> is <code>XPIN(0, n)</code>. Up to 8 boards, by address.</td></tr>
+        <tr><td><b>ADS1115</b> converter, per 4 sensors</td><td>soil sensors</td><td>4 inputs. Input <i>c</i> is <code>ADC_CH(0, c)</code>.</td></tr>
+        <tr><td><b>DRV8833</b>, per 2 zones</td><td>the extra valves</td><td>VM from the boost's 5 V, SLP/EEP on pin 17 with the first one, its four inputs on the expander</td></tr>
+        <tr><td>Valve, drip line, soil sensor, per zone</td><td>the zone itself</td><td>A tee or a longer water rail from the right drum's outlet, plus a cable gland each</td></tr>
+        <tr><td>Drum, float switch, per drum</td><td>more water</td><td>Its own stand, bulkhead, shutoff and filter. The float goes to an expander pin.</td></tr>
+      </tbody>
+    </table></div>
+    <ol class="steps">
+      <li><span><b>Wire the boards.</b> Connect SDA, SCL, 3.3 V and GND on the expander and converter to the clock module's. Leave the address pins on GND for the first of each.</span></li>
+      <li><span><b>Edit <code>planter_config.h</code>.</b> Raise <code>ZONE_COUNT</code> and <code>TANK_COUNT</code>, and add one entry per zone to each list: soil sensor pin, both valve pins, <code>MS_PER_ML</code>, dry and wet millivolts, and <code>ZONE_TANK</code> (which drum feeds it). The end of <code>config_example.h</code> has a worked 4-zone, 2-drum example.</span></li>
+      <li><span><b>Power the sensors.</b> With more than 4 soil sensors, switch their power through a small P-MOSFET from pin 4: a single pin can't supply them all.</span></li>
+      <li><span><b>Upload and calibrate</b> the new zones as above. Then open Commune's Planter page: it shows every zone and drum the planter reports. Name them there and set each zone's watering.</span></li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">In this project</span>
+  <h2>Where the code lives</h2>
+  <div class="paths">
+    <div><b>Firmware</b><code>automated_planter_system/firmware/</code><span>PlatformIO project: sensors, valves, deep sleep, SD card, clock, phone page, reports. The watering rules are in <code>src/planter_logic.h</code>, tested by <code>test/host/run.sh</code>.</span></div>
+    <div><b>Bridge</b><code>automated_planter_system/commune_link/</code><span>The Raspberry Pi mailbox between the planter and Commune. Python, nothing to install.</span></div>
+    <div><b>Commune</b><code>commune_offline_community_suite/planter.py</code><span>Imports readings, keeps settings, runs the Planter page</span></div>
+    <div><b>Format</b><code>docs/integrations/planter.md</code><span>The files any planter can write to join Commune</span></div>
+  </div>
+</section>
+</div>

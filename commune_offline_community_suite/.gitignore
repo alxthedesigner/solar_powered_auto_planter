@@ -1,0 +1,22 @@
+# Python environment (start.command recreates it)
+.venv/
+__pycache__/
+*.pyc
+
+# Your own data: chosen drive, favorites, topic edits, saved packages
+settings.json
+packages.json
+
+# Regenerated from library.kiwix.org
+catalog_cache.json
+
+# Third-party zimit source (the app runs zimit through Docker)
+zimit-main/
+
+.DS_Store
+
+# Field finds kept on this computer while no drive is connected
+field-id/
+
+# Planter readings and settings (always kept on this computer, not the drive)
+planter/

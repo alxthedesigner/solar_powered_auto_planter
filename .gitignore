@@ -1,0 +1,17 @@
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+
+# Firmware build output, and your config with the Wi-Fi password and bridge key
+.pio/
+automated_planter_system/firmware/src/planter_config.h
+
+# Commune: your own data stays on your computer
+commune_offline_community_suite/.git/
+commune_offline_community_suite/settings.json
+commune_offline_community_suite/packages.json
+commune_offline_community_suite/catalog_cache.json
+commune_offline_community_suite/zimit-main/
+commune_offline_community_suite/field-id/
+commune_offline_community_suite/planter/

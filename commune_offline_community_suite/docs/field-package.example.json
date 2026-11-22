@@ -1,0 +1,257 @@
+{
+  "communeFieldPackage": 1,
+  "id": "fi0001-2026-11-18",
+  "device": { "id": "FI-0001", "name": "Field identifier", "firmware": "0.2.0" },
+  "since": "2026-11-12T08:00:00-08:00",
+  "created": "2026-11-18T17:40:00-08:00",
+  "entries": [
+    {
+      "id": "p-001",
+      "category": "plant",
+      "captured": "2026-11-14T10:12:00-08:00",
+      "location": { "lat": 45.5231, "lon": -122.6765, "label": "Trail edge, Forest Park" },
+      "photo": "photos/p-001.png",
+      "name": "Common yarrow",
+      "scientific": "Achillea millefolium",
+      "confidence": 0.94,
+      "quotes": [
+        { "text": "Achillea millefolium, commonly known as yarrow or common yarrow, is a flowering plant in the family Asteraceae.", "library": "wikipedia_en_all", "title": "Achillea millefolium", "path": "Achillea_millefolium", "url": "https://en.wikipedia.org/wiki/Achillea_millefolium" }
+      ],
+      "details": {
+        "edibility": "Yes, in small amounts",
+        "edibleAs": ["Spice", "Leaf"],
+        "poisonous": "Large amounts can irritate skin and stomach; avoid in pregnancy",
+        "lookalikes": ["Poison hemlock (smooth, purple-blotched stem)", "Water hemlock"],
+        "medicinal": "Traditionally used to slow minor bleeding",
+        "nutrition": "Small amounts of vitamin C and minerals",
+        "watering": "Low; let the soil dry out between waterings",
+        "sunlight": "Full sun",
+        "sunDirection": "South or west facing",
+        "climate": "Temperate; plant in spring or early autumn",
+        "fertilizers": "Rarely needed; a little compost in poor soil",
+        "pests": ["Aphids", "Powdery mildew in damp shade"],
+        "compost": "Yes: a good compost activator",
+        "planting": "Sow seeds on the surface (they need light), or divide clumps in spring",
+        "growthTime": "Flowers in its second year; 90–120 days from seed to bloom",
+        "seeds": "Cut dry flower heads in late summer and shake them over paper",
+        "purposes": ["Eating", "Medicinal", "Pest control"]
+      },
+      "sources": [
+        { "kind": "article", "library": "gardenology_en_all", "title": "Achillea millefolium", "path": "Achillea_millefolium", "url": "https://www.gardenology.org/wiki/Achillea_millefolium" },
+        { "kind": "image", "library": "wikispecies_en_all", "title": "Achillea millefolium", "path": "Achillea_millefolium", "url": "https://species.wikimedia.org/wiki/Achillea_millefolium" }
+      ]
+    },
+    {
+      "id": "p-002",
+      "category": "fungus",
+      "captured": "2026-11-15T09:30:00-08:00",
+      "location": { "label": "Under oaks near the creek" },
+      "photo": "photos/p-002.png",
+      "confidence": 0.46,
+      "candidates": [
+        { "name": "Golden chanterelle", "scientific": "Cantharellus formosus", "confidence": 0.46 },
+        { "name": "Jack-o'-lantern mushroom", "scientific": "Omphalotus olivascens", "confidence": 0.38 }
+      ],
+      "details": {
+        "edibility": "Unknown: one candidate is edible, the other is poisonous",
+        "lookalikes": ["Jack-o'-lantern mushrooms have true gills and grow in clusters on wood"]
+      }
+    },
+    {
+      "id": "p-003",
+      "category": "fungus",
+      "captured": "2026-11-15T10:05:00-08:00",
+      "photo": "photos/p-003.png",
+      "location": { "label": "Fallen oak log near the creek" },
+      "name": "Turkey tail",
+      "scientific": "Trametes versicolor",
+      "confidence": 0.91,
+      "quotes": [
+        { "text": "Trametes versicolor – also known as Coriolus versicolor and Polyporus versicolor – is a common polypore mushroom found throughout the world.", "library": "wikipedia_en_all", "title": "Trametes versicolor", "path": "Trametes_versicolor", "url": "https://en.wikipedia.org/wiki/Trametes_versicolor" }
+      ],
+      "details": {
+        "edibility": "Not edible as food: too tough to chew",
+        "edibleAs": ["Tea (simmered)"],
+        "poisonous": "Not poisonous",
+        "lookalikes": ["False turkey tail (Stereum ostrea) has a smooth underside with no pores"],
+        "medicinal": "Traditionally simmered into a tea",
+        "nutrition": "Mostly fibre",
+        "climate": "Damp, shaded woods; all year, most visible in autumn and winter",
+        "growthTime": "Fruiting bodies form over a few weeks on dead hardwood",
+        "seeds": "Spreads by spores: set a cap underside-down on paper overnight for a spore print",
+        "compost": "Yes: breaks down dead wood",
+        "purposes": ["Medicinal", "Learning"]
+      },
+      "sources": [{ "kind": "image", "library": "wikispecies_en_all", "title": "Trametes versicolor", "path": "Trametes_versicolor", "url": "https://species.wikimedia.org/wiki/Trametes_versicolor" }]
+    },
+    {
+      "id": "a-001",
+      "category": "animal",
+      "captured": "2026-11-16T07:05:00-08:00",
+      "location": { "lat": 45.531, "lon": -122.71 },
+      "photo": "photos/a-001.png",
+      "name": "Black-tailed deer",
+      "scientific": "Odocoileus hemionus columbianus",
+      "confidence": 0.89,
+      "quotes": [
+        { "text": "The mule deer is a deer indigenous to western North America.", "library": "wikipedia_en_all", "title": "Mule deer", "path": "Mule_deer", "url": "https://en.wikipedia.org/wiki/Mule_deer" }
+      ],
+      "details": {
+        "danger": "Low; bucks can be aggressive in the autumn rut",
+        "description": "Medium-sized deer with large ears and a black-topped tail",
+        "defenses": ["Runs and bounds away", "Kicks with front hooves", "Antlers (bucks)"],
+        "touch": "No: wild deer can carry ticks and may kick",
+        "feed": "No: feeding draws them to roads and spreads disease",
+        "pestToPlants": "Yes",
+        "pestOf": ["Young fruit trees", "Roses", "Lettuce and beans", "Tulips"],
+        "deterrents": ["2.4 m (8 ft) fencing", "Strong-smelling plants like lavender and mint", "Motion-activated sprinklers"],
+        "attractants": ["Acorns", "Clover", "Fallen apples"],
+        "edibility": "Yes: lean red meat, cooked thoroughly",
+        "preserveFrozen": "9–12 months",
+        "preserveFridge": "3–5 days",
+        "preserveOut": "Under 2 hours",
+        "pros": ["Food and hide", "Keeps meadows open"],
+        "cons": ["Eats gardens", "Ticks", "Road collisions"],
+        "cause": "Food in gardens and few predators nearby",
+        "conditions": "Forest edges and meadows, most active at dawn and dusk",
+        "purposes": ["Eating", "Clothing", "Building material", "Survival"]
+      },
+      "sources": [{ "kind": "article", "library": "wikispecies_en_all", "title": "Odocoileus hemionus", "path": "Odocoileus_hemionus", "url": "https://species.wikimedia.org/wiki/Odocoileus_hemionus" }]
+    },
+    {
+      "id": "a-002",
+      "category": "bug",
+      "captured": "2026-11-17T18:22:00-08:00",
+      "photo": "photos/a-002.png",
+      "confidence": 0.41,
+      "candidates": [
+        { "name": "Ladybird beetle", "scientific": "Coccinella septempunctata", "confidence": 0.41 },
+        { "name": "Asian lady beetle", "scientific": "Harmonia axyridis", "confidence": 0.37 }
+      ]
+    },
+    {
+      "id": "l-001",
+      "category": "language",
+      "captured": "2026-11-17T12:40:00-08:00",
+      "photo": "photos/l-001.png",
+      "name": "Spanish",
+      "confidence": 0.98,
+      "quotes": [
+        { "text": "Spanish or Castilian is a Romance language of the Indo-European language family that evolved from the Vulgar Latin spoken on the Iberian Peninsula.", "library": "wikipedia_en_all", "title": "Spanish language", "path": "Spanish_language", "url": "https://en.wikipedia.org/wiki/Spanish_language" }
+      ],
+      "details": {
+        "language": "Spanish",
+        "languageCode": "es",
+        "script": "Latin",
+        "text": "Peligro: agua no potable",
+        "translation": "Danger: water not safe to drink",
+        "translationLanguage": "en",
+        "pronunciation": "peh-LEE-greh: AH-gwah noh poh-TAH-bleh",
+        "historyOfText": "A standard public-health warning used on untreated water taps",
+        "historyOfLanguage": "Grew out of Latin in Castile; spread worldwide from the 1500s",
+        "cultures": ["Hispanic", "Latino", "Spaniard"],
+        "countries": ["Mexico", "Colombia", "Spain", "Argentina", "United States"],
+        "worldShare": 6.3,
+        "countryShare": { "Mexico": 98, "Spain": 99, "United States": 13.3, "Canada": 1.6 },
+        "context": "Sign on a pump at the campground",
+        "purposes": ["Understanding", "Communication"]
+      },
+      "audio": "audio/l-001.m4a",
+      "translationAudio": "audio/l-001-en.m4a",
+      "sources": [
+        { "kind": "dictionary", "library": "wiktionary_es_all", "title": "potable", "path": "potable", "url": "https://es.wiktionary.org/wiki/potable" },
+        { "kind": "lesson", "library": "wikibooks_en_all", "title": "Spanish: Lesson 1", "path": "Spanish/Lesson_1", "url": "https://en.wikibooks.org/wiki/Spanish/Lesson_1" }
+      ]
+    },
+    {
+      "id": "h-001",
+      "category": "hardware",
+      "captured": "2026-11-18T15:10:00-08:00",
+      "photo": "photos/h-001.png",
+      "name": "Raspberry Pi 4 Model B",
+      "confidence": 0.93,
+      "details": {
+        "whatIsIt": "Single-board computer",
+        "function": "A small, low-power computer for servers, controllers and learning",
+        "released": "June 2019",
+        "version": "Model B, 4 GB",
+        "commonUses": ["Offline media and Kiwix server", "Home automation", "Mesh networking node"],
+        "specs": ["Quad-core 1.5 GHz ARM CPU", "4 GB RAM", "5 V 3 A over USB-C"],
+        "connectors": ["2× micro-HDMI", "2× USB 3, 2× USB 2", "Gigabit Ethernet", "40-pin GPIO"],
+        "lifespan": "5–10 years with good cooling and power",
+        "components": ["BCM2711 processor", "LPDDR4 memory", "microSD slot"],
+        "pairedSoftware": ["Raspberry Pi OS", "Kiwix-serve"],
+        "softwareRequired": "An operating system on a microSD card",
+        "hardwareRequired": ["5 V 3 A USB-C power supply", "microSD card"],
+        "maintenance": ["Keep it cool (heatsink or fan)", "Use a good power supply", "Shut down before unplugging"],
+        "hazards": "Gets hot under load; don't short the GPIO pins",
+        "purposes": ["Communications", "Electrical"]
+      },
+      "sources": [
+        { "kind": "article", "title": "Raspberry Pi 4 Model B specifications", "url": "https://www.raspberrypi.com/products/raspberry-pi-4-model-b/specifications/" },
+        { "kind": "article", "library": "electronics.stackexchange.com_en_all", "title": "Raspberry Pi power requirements", "path": "", "url": "https://electronics.stackexchange.com/" }
+      ]
+    },
+    {
+      "id": "s-001",
+      "category": "software",
+      "captured": "2026-11-18T15:40:00-08:00",
+      "photo": "photos/s-001.png",
+      "name": "Kiwix",
+      "confidence": 0.9,
+      "details": {
+        "genre": "Offline reader",
+        "creator": "Kiwix (open source)",
+        "released": "2007",
+        "version": "kiwix-tools 3.7",
+        "commonUses": ["Read Wikipedia offline", "Serve offline libraries on a local network"],
+        "history": "Started to bring Wikipedia to places without internet",
+        "pros": ["Free", "Works with no internet"],
+        "cons": ["Large downloads"],
+        "hardwareRequired": "Any computer or phone",
+        "pairedHardware": ["Raspberry Pi", "USB drives"],
+        "subscription": "No",
+        "security": ["Download from kiwix.org only", "Keep it on your local network"],
+        "github": "https://github.com/kiwix"
+      },
+      "sources": [
+        { "kind": "article", "title": "Kiwix", "url": "https://kiwix.org/" },
+        { "kind": "article", "title": "Kiwix on GitHub", "url": "https://github.com/kiwix" }
+      ]
+    },
+    {
+      "id": "f-001",
+      "category": "firstaid",
+      "captured": "2026-11-18T16:05:00-08:00",
+      "photo": "photos/f-001.png",
+      "name": "Elastic bandage",
+      "confidence": 0.88,
+      "details": {
+        "type": "Item",
+        "description": "Stretchy cloth bandage for wrapping sprains",
+        "howToApply": ["Start below the injury and wrap toward the heart", "Overlap each turn by half", "Firm but not tight: check fingers or toes stay warm and pink"],
+        "otc": "Over the counter",
+        "naturalRemedies": ["Cold compress for the first 48 hours", "Arnica (on unbroken skin)"],
+        "related": ["Sprained ankle", "Sprained wrist"],
+        "manualYear": "2016",
+        "purposes": ["Mitigating further damage", "Wound healing", "First response"]
+      },
+      "sources": [
+        { "kind": "manual", "library": "irp.fas.org_en_military-medicine", "title": "Sprains and strains", "path": "", "url": "https://irp.fas.org/" },
+        { "kind": "image", "library": "zimgit-medicine_en", "title": "Applying a compression bandage", "path": "", "url": "https://library.kiwix.org/#q=zimgit-medicine_en" }
+      ]
+    },
+    {
+      "id": "f-002",
+      "category": "firstaid",
+      "captured": "2026-11-18T16:30:00-08:00",
+      "photo": "photos/f-002.png",
+      "confidence": 0.55,
+      "candidates": [
+        { "name": "Second-degree burn", "confidence": 0.55 },
+        { "name": "Contact dermatitis", "confidence": 0.3 }
+      ],
+      "details": { "type": "Injury" }
+    }
+  ]
+}
